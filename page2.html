@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>You're Invited - Housewarming Details</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5dcdc, #c9e4f5);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-attachment: fixed;
+      animation: fadeIn 1s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.95); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(15px);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+      border-radius: 20px;
+      padding: 40px 30px;
+      max-width: 500px;
+      width: 90%;
+      text-align: center;
+      animation: slideUp 1s ease-in-out;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(30px); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+
+    .card h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      margin-bottom: 10px;
+      color: #2c3e50;
+    }
+
+    .countdown {
+      font-size: 22px;
+      font-weight: 600;
+      color: #e91e63;
+      margin: 20px 0;
+      text-shadow: 0 0 8px #fff;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+
+    .card p {
+      color: #333;
+      font-size: 16px;
+      margin: 12px 0;
+      line-height: 1.6;
+    }
+
+    .map-link {
+      display: inline-block;
+      margin: 15px 0;
+      padding: 10px 24px;
+      background-color: #8e44ad;
+      color: white;
+      text-decoration: none;
+      border-radius: 30px;
+      font-weight: bold;
+      transition: background 0.3s ease;
+    }
+
+    .map-link:hover {
+      background-color: #732d91;
+    }
+
+    blockquote {
+      font-style: italic;
+      color: #666;
+      margin-top: 25px;
+      border-left: 4px solid #ccc;
+      padding-left: 16px;
+    }
+
+    .back {
+      display: block;
+      margin-top: 25px;
+      color: #8e44ad;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h2>🏡 You're Invited!</h2>
+    <div class="countdown" id="countdown">Loading countdown...</div>
+
+    <p>We joyfully invite you to celebrate the beginning of a new journey in our new home. Your presence will bring warmth, laughter, and love to our special day!</p>
+
+    <p><strong>Date:</strong> August 15, 2025</p>
+    <p><strong>Time:</strong> soon</p>
+    <p><strong>Venue:</strong> Hyderabad</p>
+    <a class="map-link" href="https://www.google.com/maps" target="_blank"> Open in Google Maps</a>
+
+    <blockquote>
+      "A house is made of walls and beams, a home is built with love and dreams."
+    </blockquote>
+
+    <a class="back" href="index.html">← Back to Main Page</a>
+  </div>
+
+  <script>
+    const countdownElement = document.getElementById("countdown");
+    const eventDate = new Date("August 15, 2025 10:30:00").getTime();
+
+    function updateCountdown() {
+      const now = new Date().getTime();
+      const timeLeft = eventDate - now;
+
+      if (timeLeft <= 0) {
+        countdownElement.innerText = "🎉 It's Housewarming Day!";
+        return;
+      }
+
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      countdownElement.innerText = `⏳ ${days}d ${hours}h ${minutes}m ${seconds}s to go`;
+    }
+
+    setInterval(updateCountdown, 1000);
+    updateCountdown();
+  </script>
+</body>
+</html>
